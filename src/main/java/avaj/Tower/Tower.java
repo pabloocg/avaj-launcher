@@ -2,6 +2,7 @@ package avaj.Tower;
 
 import java.util.ArrayList;
 import avaj.Airplanes.*;
+import avaj.Simulator.Log;
 
 public class Tower {
 
@@ -14,7 +15,7 @@ public class Tower {
         }
         observers.add(flyable);
         Aircraft airplane = (Aircraft) flyable;
-        System.out.println("Tower says: " + airplane.getClass().getSimpleName() + "#" + airplane.getName() + "("
+        Log.getLog().write("Tower says: " + airplane.getClass().getSimpleName() + "#" + airplane.getName() + "("
                 + airplane.getId() + ") registered to weather tower.");
     }
 
@@ -24,7 +25,7 @@ public class Tower {
         }
         to_delete.add(flyable);
         Aircraft airplane = (Aircraft) flyable;
-        System.out.println("Tower says: " + airplane.getClass().getSimpleName() + "#" + airplane.getName() + "("
+        Log.getLog().write("Tower says: " + airplane.getClass().getSimpleName() + "#" + airplane.getName() + "("
                 + airplane.getId() + ") unregistered from weather tower.");
     }
 

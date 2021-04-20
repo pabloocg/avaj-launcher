@@ -2,6 +2,7 @@ package avaj.Airplanes;
 
 import avaj.Tower.WeatherTower;
 import avaj.Coordinates.Coordinates;
+import avaj.Simulator.Log;
 
 class JetPlane extends Aircraft implements Flyable {
 
@@ -9,7 +10,6 @@ class JetPlane extends Aircraft implements Flyable {
 
     JetPlane(String name, Coordinates coordinates) {
         super(name, coordinates);
-        // this.print();
     }
 
     public void updateConditions() {
@@ -18,27 +18,30 @@ class JetPlane extends Aircraft implements Flyable {
         switch (weather) {
         case "SUN":
             this.coordinates = new Coordinates(cord.getLongitude(), cord.getLatitude() + 10, cord.getHeight() + 2);
-            System.out.println("JetPlane#" + this.name + "(" + this.id + "): weather sun.");
+            Log.getLog().write("JetPlane#" + this.name + "(" + this.id
+                    + "): No matter how sunny it is, don't leave your cape at home.");
             break;
         case "RAIN":
             this.coordinates = new Coordinates(cord.getLongitude(), cord.getLatitude() + 5, cord.getHeight());
-            System.out.println("JetPlane#" + this.name + "(" + this.id + "): weather rain.");
+            Log.getLog().write("JetPlane#" + this.name + "(" + this.id
+                    + "): Even if it is a rainy day it will be a wonderful day.");
             break;
         case "FOG":
             this.coordinates = new Coordinates(cord.getLongitude(), cord.getLatitude() + 1, cord.getHeight());
-            System.out.println("JetPlane#" + this.name + "(" + this.id + "): weather fog.");
+            Log.getLog().write("JetPlane#" + this.name + "(" + this.id + "): This fog is complicating the journey.");
             break;
         case "SNOW":
             this.coordinates = new Coordinates(cord.getLongitude(), cord.getLatitude(), cord.getHeight() - 7);
-            System.out.println("JetPlane#" + this.name + "(" + this.id + "): weather snow.");
+            Log.getLog().write("JetPlane#" + this.name + "(" + this.id + "): Year of acorns, snow up to the balls");
             break;
         }
         if (this.coordinates.getHeight() <= 0) {
-            System.out.println("JetPlane#" + this.name + "(" + this.id + ") landing.");
+            Log.getLog().write("JetPlane#" + this.name + "(" + this.id + ") landing.");
             this.weatherTower.unregister(this);
-            System.out.println("JetPlane#" + this.name + "(" + this.id + "): Longitude "
-                    + this.coordinates.getLongitude() + " Latitude " + this.coordinates.getLatitude() + " Height "
-                    + this.coordinates.getHeight());
+            Log.getLog()
+                    .write("JetPlane#" + this.name + "(" + this.id + "): Longitude " + this.coordinates.getLongitude()
+                            + " Latitude " + this.coordinates.getLatitude() + " Height "
+                            + this.coordinates.getHeight());
         }
     }
 

@@ -10,7 +10,6 @@ import avaj.Tower.*;
 
 /*
     TO DO:
-    - log en archivo
     - Algoritmo para saber el tiempo dependiendo de las coordenadas.
 */
 
@@ -89,17 +88,13 @@ public class Main {
             System.exit(1);
         }
         try {
-            Log.getLog().write("Holas");
-            Log.getLog().write("adios");
             String[] options;
             int number_of_simulations;
             Scanner scan = new Scanner(new File(args[0]));
             WeatherTower tower = new WeatherTower();
-            // Flyable machine;
             ArrayList<Flyable> machines = new ArrayList<>();
 
             number_of_simulations = parseNSimulationLine(scan.nextLine());
-            System.out.println("Integer simulation received: " + number_of_simulations);
             while (scan.hasNextLine()) {
                 options = parseLineOfFlyable(scan.nextLine());
                 machines.add(AircraftFactory.newAircraft(options[0], options[1], Integer.parseInt(options[2]),
@@ -119,15 +114,6 @@ public class Main {
             System.out.println("Something go wrong");
             e.printStackTrace();
         }
-        /*
-         * WeatherTower tower = new WeatherTower(); Flyable machine1 =
-         * AircraftFactory.newAircraft("Helicopter", "Hazum1", 5, 6, 1);
-         * machine1.registerTower(tower); machine1 =
-         * AircraftFactory.newAircraft("Baloon", "Heezy1", 5, 6, 1);
-         * machine1.registerTower(tower); machine1 =
-         * AircraftFactory.newAircraft("JetPlane", "R2D2", 5, 6, 1);
-         * machine1.registerTower(tower); tower.changeWeather();
-         */
     }
 
 }

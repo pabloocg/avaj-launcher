@@ -2,6 +2,7 @@ package avaj.Airplanes;
 
 import avaj.Tower.WeatherTower;
 import avaj.Coordinates.Coordinates;
+import avaj.Simulator.Log;
 
 public class Baloon extends Aircraft implements Flyable {
 
@@ -9,7 +10,6 @@ public class Baloon extends Aircraft implements Flyable {
 
     Baloon(String name, Coordinates coordinates) {
         super(name, coordinates);
-        // this.print();
     }
 
     public void updateConditions() {
@@ -18,25 +18,28 @@ public class Baloon extends Aircraft implements Flyable {
         switch (weather) {
         case "SUN":
             this.coordinates = new Coordinates(cord.getLongitude() + 2, cord.getLatitude(), cord.getHeight() + 4);
-            System.out.println("Baloon#" + this.name + "(" + this.id + "): weather sun.");
+            Log.getLog().write(
+                    "Baloon#" + this.name + "(" + this.id + "): It is very strange that the sun rises on this side..");
             break;
         case "RAIN":
             this.coordinates = new Coordinates(cord.getLongitude(), cord.getLatitude(), cord.getHeight() - 5);
-            System.out.println("Baloon#" + this.name + "(" + this.id + "): weather rain.");
+            Log.getLog().write("Baloon#" + this.name + "(" + this.id
+                    + "): This rain invites you to make hot things... like coffee.");
             break;
         case "FOG":
             this.coordinates = new Coordinates(cord.getLongitude(), cord.getLatitude(), cord.getHeight() - 3);
-            System.out.println("Baloon#" + this.name + "(" + this.id + "): weather fog.");
+            Log.getLog()
+                    .write("Baloon#" + this.name + "(" + this.id + "): How thick the fog is. I can't see the path.");
             break;
         case "SNOW":
             this.coordinates = new Coordinates(cord.getLongitude(), cord.getLatitude(), cord.getHeight() - 15);
-            System.out.println("Baloon#" + this.name + "(" + this.id + "): weather snow.");
+            Log.getLog().write("Baloon#" + this.name + "(" + this.id + "): Year of snow, year of goods.");
             break;
         }
         if (this.coordinates.getHeight() <= 0) {
-            System.out.println("Baloon#" + this.name + "(" + this.id + ") landing.");
+            Log.getLog().write("Baloon#" + this.name + "(" + this.id + ") landing.");
             this.weatherTower.unregister(this);
-            System.out.println("Baloon#" + this.name + "(" + this.id + "): Longitude " + this.coordinates.getLongitude()
+            Log.getLog().write("Baloon#" + this.name + "(" + this.id + "): Longitude " + this.coordinates.getLongitude()
                     + " Latitude " + this.coordinates.getLatitude() + " Height " + this.coordinates.getHeight());
         }
     }
