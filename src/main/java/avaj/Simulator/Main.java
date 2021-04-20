@@ -8,11 +8,6 @@ import java.util.ArrayList;
 import avaj.Airplanes.*;
 import avaj.Tower.*;
 
-/*
-    TO DO:
-    - Algoritmo para saber el tiempo dependiendo de las coordenadas.
-*/
-
 public class Main {
 
     /**

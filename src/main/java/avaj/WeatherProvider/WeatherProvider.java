@@ -19,7 +19,7 @@ public class WeatherProvider {
     }
 
     public String getCurrentWeather(Coordinates coordinates) {
-        Random generator = new Random();
+        Random generator = new Random(coordinates.getLongitude() * coordinates.getLatitude() * coordinates.getHeight());
         int randomIndex = generator.nextInt(weather.length);
         return weather[randomIndex];
     }
